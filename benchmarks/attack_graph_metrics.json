@@ -1,0 +1,58 @@
+{
+  "graph_statistics": {
+    "node_count": 35,
+    "edge_count": 30
+  },
+  "shortest_escalation_path": {
+    "source": "user_contractor_dev",
+    "target": "role_org_admin",
+    "hops": 5,
+    "cumulative_cost": 7.0,
+    "pathfinding_latency_microseconds": 499.8,
+    "attack_chain_nodes": [
+      "user_contractor_dev",
+      "role_dev_lambda",
+      "bucket_staging_deployments",
+      "profile_ec2_cicd_runner",
+      "role_cluster_operator",
+      "role_org_admin"
+    ],
+    "permissions_traversed": [
+      "sts:AssumeRole",
+      "s3:GetObject",
+      "ec2:AssociateIamInstanceProfile",
+      "iam:PassRole",
+      "iam:AttachRolePolicy"
+    ],
+    "mitre_techniques": [
+      "T1078 - Valid Accounts",
+      "T1530 - Data from Cloud Storage",
+      "T1078.004 - Cloud Accounts",
+      "T1098 - Account Manipulation",
+      "T1098.001 - Additional Cloud Credentials"
+    ]
+  },
+  "blast_radius": {
+    "reachable_nodes_count": 6,
+    "max_propagation_depth": 6,
+    "hvts_at_risk": [
+      "role_org_admin",
+      "secret_prod_database"
+    ],
+    "computation_latency_microseconds": 381.1
+  },
+  "architectural_chokepoints": [
+    {
+      "node": "bucket_staging_deployments",
+      "betweenness_centrality": 0.3
+    },
+    {
+      "node": "profile_ec2_cicd_runner",
+      "betweenness_centrality": 0.3
+    },
+    {
+      "node": "role_cluster_operator",
+      "betweenness_centrality": 0.2
+    }
+  ]
+}
